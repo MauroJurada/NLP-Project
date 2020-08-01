@@ -83,10 +83,11 @@ for j in range(1, number_of_rows):
     for i in range(len(finalData) // 2, len(finalData)):
         coords.append([finalData[i] + 5, 11 - i])
 
-    f = open('fingerprints/' + data[j][1] + '.txt', 'w')
-    for coord in coords:
-        f.write(str(coord) + '\n')
-    f.close()
+    numpy.save('fingerprints/' + data[j][1] + '.npy', coords)
+    #f = open('fingerprints/' + data[j][1] + '.txt', 'w')
+    #for coord in coords:
+    #    f.write(str(coord))
+    #f.close()
 
     print(coords)
     x, y = numpy.split(coords, [-1], axis=1)
@@ -151,6 +152,7 @@ for j in range(1, number_of_rows):
     y = numpy.ravel(y)
     plt.plot(x, y, color='k', marker=',', linestyle='solid', linewidth=2, solid_capstyle='round')
     plt.text(10, -0.2, 'v0.1', fontsize=6)
+    plt.text(-10.5, 5.5,  data[j][1], fontsize=8, color="midnightblue")
     plt.axis('off')
     plt.savefig('fingerprints/' + data[j][1] + '.png', dpi=None, facecolor='w', edgecolor='w',
             orientation='portrait', papertype=None, format=None,
